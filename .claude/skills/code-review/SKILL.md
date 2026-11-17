@@ -121,6 +121,7 @@ refusal message — but the cheap fix is upstream of both: don't pass a path.
 1. Fetch PR details and the latest commit SHA
 2. Get the diff
 3. Review against the checklist (acceptance criteria, architecture, code quality, testing, security, performance)
+   - **Project REVIEW.md.** If the reviewed repo has a `REVIEW.md` on its **base** branch, read that copy, never the PR's: `gh api "repos/$PR_HOST_REPO/contents/REVIEW.md?ref=<base>" --jq .content | base64 -d`. Follow it as written: its severity tags, and the reliability-checklist rows whose trigger the diff matches. Name each row you ran. If the PR edits `REVIEW.md` itself, review against the base copy and say so.
 4. Check for the required Glossary section
 5. Check for AgDR links if technical decisions were made
 6. On JS/TS diffs, run the Fallow static-analysis pass (§ 9 of the agent) — changed-scope, fail-soft, advisory; render a `### Fallow Findings` table + dry-run fix preview
